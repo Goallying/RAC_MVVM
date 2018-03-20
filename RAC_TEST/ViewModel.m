@@ -7,8 +7,6 @@
 //
 
 #import "ViewModel.h"
-#import "RequestManager.h"
-#import <YYModel/YYModel.h>
 #import "Model.h"
 @implementation ViewModel
 

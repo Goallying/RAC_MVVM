@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <YYModel/YYModel.h>
+#import "RequestManager.h"
 
 @interface BaseViewModel : NSObject
 
