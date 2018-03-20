@@ -1,0 +1,6 @@
+framework module Pods_RACSubject_RACReplaySubject {
+  umbrella header "Pods-RACSubject_RACReplaySubject-umbrella.h"
+
+  export *
+  module * { export * }
+}
