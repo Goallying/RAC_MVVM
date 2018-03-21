@@ -17,7 +17,6 @@
     return self ;
 }
 - (NSString *)header:(NSIndexPath *)idx{
-    
     Model * model = _lives[idx.item];
     return model.creator.portrait;
 }
@@ -48,7 +47,7 @@
                 //no more send
                 [subscriber sendError:error];
                 [subscriber sendCompleted];
-            }];
+            }] ;
             return nil;
         }];
     }];

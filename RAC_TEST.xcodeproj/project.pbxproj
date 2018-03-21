@@ -10,6 +10,7 @@
 		32060612826B7E36EDE2AD72 /* Pods_RACFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89BE2278EF904DDB3EC19D9 /* Pods_RACFilter.framework */; };
 		3B3E8B5ADAAB53A8B9076A91 /* Pods_RACMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FF55DD258E8FDE40D6EF9F /* Pods_RACMap.framework */; };
 		40DD822D7D6107DB4AF7B8AA /* Pods_RACSubject_RACReplaySubject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76894336F1641CBD8D878C3A /* Pods_RACSubject_RACReplaySubject.framework */; };
+		5550CFEF20620886009DFC1A /* Mediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5550CFEE20620886009DFC1A /* Mediator.m */; };
 		556844A6205F7E4B0069C1FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 556844A5205F7E4B0069C1FC /* AppDelegate.m */; };
 		556844A9205F7E4B0069C1FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556844A8205F7E4B0069C1FC /* ViewController.m */; };
 		556844AC205F7E4B0069C1FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 556844AA205F7E4B0069C1FC /* Main.storyboard */; };
@@ -136,6 +137,8 @@
 		42F68BD7785CC2F2AFBBD1EC /* Pods_RAC_leftSelector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RAC_leftSelector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		457EAF96619BDF3E293A42A0 /* Pods-RACTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RACTimer/Pods-RACTimer.debug.xcconfig"; sourceTree = "<group>"; };
 		518E6ACFEA0B5C0017679AD8 /* Pods_RACBind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RACBind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5550CFED20620886009DFC1A /* Mediator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mediator.h; sourceTree = "<group>"; };
+		5550CFEE20620886009DFC1A /* Mediator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mediator.m; sourceTree = "<group>"; };
 		556844A1205F7E4B0069C1FC /* RAC_TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAC_TEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		556844A4205F7E4B0069C1FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		556844A5205F7E4B0069C1FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -472,6 +475,8 @@
 			children = (
 				5568465720610D7C0069C1FC /* BaseViewModel */,
 				5568465020610AF80069C1FC /* BaseViewController */,
+				5550CFED20620886009DFC1A /* Mediator.h */,
+				5550CFEE20620886009DFC1A /* Mediator.m */,
 				5568464F206104E30069C1FC /* Table_Collection_View_Protocol.h */,
 				5568464D2060E5B30069C1FC /* https.cer */,
 				556846412060D8D20069C1FC /* RequestManager.h */,
@@ -2034,6 +2039,7 @@
 			files = (
 				5568464C2060DE6A0069C1FC /* LiveItemCell.m in Sources */,
 				5568465320610B120069C1FC /* BaseViewController.m in Sources */,
+				5550CFEF20620886009DFC1A /* Mediator.m in Sources */,
 				5568465A20610D910069C1FC /* BaseViewModel.m in Sources */,
 				5568463F2060BBCF0069C1FC /* ViewModel.m in Sources */,
 				5568465D20610DFD0069C1FC /* PlayViewModel.m in Sources */,

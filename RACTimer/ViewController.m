@@ -24,6 +24,15 @@
         @strongify(self);
         NSLog(@"timer == %@",x);
     }];
+    
+//    RAC(viewModel, time) = [[[RACSignal
+//                              interval:60 onScheduler:[RACScheduler mainThreadScheduler] withLeeway:0]
+//                             startWith:[NSDate date]]
+//                            map:^(NSDate *date) {
+//                                TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+//                                timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//                                return [timeIntervalFormatter stringForTimeIntervalFromDate:date toDate:event.date];
+//                            }];
 }
 
 

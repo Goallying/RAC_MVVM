@@ -35,6 +35,12 @@
     //    [self merge];
     //    [self then];
     [self concat];
+    
+    //
+//    tableHeaderView
+//    RAC(self.tableView, tableHeaderView) = [RACObserve(MRCSharedAppDelegate, networkStatus) map:^(NSNumber *networkStatus) {
+//        return networkStatus.integerValue == NotReachable ? tableHeaderView : nil;
+//    }];
 }
 - (void)concat {
     // concat----- 使用需求：有两部分数据：想让上部分先执行，完了之后再让下部分执行（都可获取值）

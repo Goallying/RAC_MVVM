@@ -10,7 +10,6 @@
 #import "LiveItemCell.h"
 #import "ViewModel.h"
 #import "PlayViewController.h"
-#import "PlayViewController.h"
 #import "PlayViewModel.h"
 
 @interface ViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -34,7 +33,9 @@
 }
 - (void)bindViewModel{
     
-        [[self.mainViewModel.dataCommand execute:nil]subscribeNext:^(NSMutableArray * x) {
+        [[self.mainViewModel.dataCommand execute:nil] subscribeNext:^(NSMutableArray * x) {
+//            BOOL hidden = x.count == 0;
+            
         [self.collectionView reloadData];
         } error:^(NSError *error) {
             NSLog(@"==== %@",error);
@@ -57,6 +58,7 @@
     return cell ;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString * url = [self.mainViewModel didSelectAtIndexPath:indexPath];
     
     PlayViewModel * playViewModel = [PlayViewModel new];
@@ -82,7 +84,6 @@
         _collectionView.delegate = self ;
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:@"LiveItemCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-        
     }
     return _collectionView;
 }
