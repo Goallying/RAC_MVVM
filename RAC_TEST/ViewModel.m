@@ -13,6 +13,7 @@
 - (instancetype)init{
     if(self = [super init]){
         [self setuplistDataCommand];
+        [self setupNameCommand];
     }
     return self ;
 }
@@ -23,6 +24,22 @@
 - (NSString *)name:(NSIndexPath *)idx{
     Model * model = _lives[idx.item];
     return model.creator.nick;
+}
+- (void)setupNameCommand {
+    
+    _nameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(NSIndexPath * indexPath) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            Model * model = _lives[indexPath.item];
+            [subscriber sendNext:model.creator.nick];
+            [subscriber sendCompleted];
+            return [RACDisposable disposableWithBlock:^{
+                NSLog(@"disposable");
+            }] ;
+        }];
+    }];
+    //TODO:是否允许并发执行。
+    _nameCommand.allowsConcurrentExecution = YES ;
+  
 }
 - (void)setuplistDataCommand{
     

@@ -24,7 +24,10 @@
 
 - (void)configCell:(ViewModel *)viewModel indexPath:(NSIndexPath *)indexPath {
 
-    _nameLabel.text = [viewModel name:indexPath];
+    [[viewModel.nameCommand execute:indexPath] subscribeNext:^(NSString * x) {
+        _nameLabel.text = x ;
+    }];
+    
     _audienceCountLabel.text = @"999";
     [_liveImageView sd_setImageWithURL:[NSURL URLWithString:[viewModel header:indexPath]] placeholderImage:nil];
 }

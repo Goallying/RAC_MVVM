@@ -12,7 +12,14 @@
 @interface ViewModel : BaseViewModel<Table_Collection_View_Protocol>
 
 @property (nonatomic ,strong,readonly)RACCommand * dataCommand ;
+@property (nonatomic ,strong,readonly)RACCommand * nameCommand ;
+
+//@property (nonatomic ,strong)RACSignal *nameSinal ;
+//@property (nonatomic ,strong)RACSubject * subject ;
+
+
 @property (nonatomic ,strong,readonly)NSMutableArray * lives ;
+
 
 - (NSString *)name:(NSIndexPath*)idx ;
 - (NSString *)header:(NSIndexPath *)idx ;

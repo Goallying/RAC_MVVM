@@ -35,7 +35,6 @@
     
         [[self.mainViewModel.dataCommand execute:nil] subscribeNext:^(NSMutableArray * x) {
 //            BOOL hidden = x.count == 0;
-            
         [self.collectionView reloadData];
         } error:^(NSError *error) {
             NSLog(@"==== %@",error);
