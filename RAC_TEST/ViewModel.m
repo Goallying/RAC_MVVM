@@ -12,8 +12,11 @@
 
 - (instancetype)init{
     if(self = [super init]){
+        
         [self setuplistDataCommand];
         [self setupNameCommand];
+        [self setupHeaderCommand];
+        
     }
     return self ;
 }
@@ -24,6 +27,19 @@
 - (NSString *)name:(NSIndexPath *)idx{
     Model * model = _lives[idx.item];
     return model.creator.nick;
+}
+- (void)setupHeaderCommand{
+//    _headerCommand = [RACCommand alloc]initWithEnabled:<#(RACSignal *)#> signalBlock:<#^RACSignal *(id input)signalBlock#>
+    _headerCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(NSIndexPath * indexPath) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            Model * model = _lives[indexPath.item];
+            [subscriber sendNext:model.creator.portrait];
+            [subscriber sendCompleted];
+            return nil ;
+        }];
+    }];
+    _headerCommand.allowsConcurrentExecution = YES;
+    
 }
 - (void)setupNameCommand {
     

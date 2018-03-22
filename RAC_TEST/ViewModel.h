@@ -13,6 +13,7 @@
 
 @property (nonatomic ,strong,readonly)RACCommand * dataCommand ;
 @property (nonatomic ,strong,readonly)RACCommand * nameCommand ;
+@property (nonatomic ,strong,readonly)RACCommand * headerCommand ;
 
 //@property (nonatomic ,strong)RACSignal *nameSinal ;
 //@property (nonatomic ,strong)RACSubject * subject ;
