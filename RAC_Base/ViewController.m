@@ -124,7 +124,6 @@
     RAC(_btn ,enabled)  = sinal ;
 }
 - (void)btnClick {
-    
     NSLog(@"===click");
 }
 

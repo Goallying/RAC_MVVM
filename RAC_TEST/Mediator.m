@@ -7,6 +7,8 @@
 //
 
 #import "Mediator.h"
+#import <CoreGraphics/CoreGraphics.h>
+
 @interface Mediator()
 @property (nonatomic ,strong)NSMutableDictionary * cache ;
 @end
@@ -26,25 +28,94 @@ typedef void (^componentBlock) (id param);
 + (instancetype)allocWithZone:(struct _NSZone *)zone{
     return [self shared];
 }
-- (instancetype)init{
-    if (self = [super init]) {
-        _cache = [[NSMutableDictionary alloc]init];
+- (id)performTarget:(NSString *)target selector:(NSString *)sel parma:(NSDictionary *)param {
+    
+    Class targetCls = NSClassFromString(target);
+    SEL action ;
+    if (param) {
+       action =  NSSelectorFromString([NSString stringWithFormat:@"%@:",sel]);
+    }else{
+        action = NSSelectorFromString(sel);
     }
-    return self ;
-}
-- (void)registeURLPattern:(NSString *)urlPattern handler:(componentBlock)blk{
-    [_cache setObject:blk forKey:urlPattern];
-}
-- (void)openURL:(NSString *)url withParam:(id)param{
-    componentBlock blk = [_cache objectForKey:url];
-    if (blk) {
-        blk(param);
+    
+    if (!targetCls) {
+        @throw [NSException exceptionWithName:@"Target Not Found" reason:@"找不到相应的target class" userInfo:nil];
+        return nil;
+    }
+    NSObject * targetObj = [[targetCls alloc] init];
+    if ([targetObj respondsToSelector:action]) {
+        return [self _performTarget:targetObj selector:action parma:param];
+    }else{
+        @throw [NSException exceptionWithName:@"Selector Implement Not Found" reason:@"找不到方法实现" userInfo:nil];
     }
 }
-//
 
-+ (void)goToDetail:(NSString *)ID{
-    [[Mediator shared]openURL:@"RAC_Detail" withParam:@{@"ID":ID}];
+- (id)_performTarget:(NSObject *)target selector:(SEL)sel parma:(NSDictionary *)param{
+    
+    NSMethodSignature * sign = [target methodSignatureForSelector:sel];
+    if (!sign) {
+        return nil ;
+    }
+    //返回值
+    const char * ret = [sign methodReturnType];
+    if (strcmp(ret, @encode(void)) == 0) {
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
+        [invocation setArgument:&param atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:sel];
+        [invocation invoke];
+        return  nil ;
+    }
+    if (strcmp(ret, @encode(NSInteger)) == 0) {
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
+        [invocation setArgument:&param atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:sel];
+        [invocation invoke];
+        
+        NSInteger value = 0 ;
+        [invocation getReturnValue:&value];
+        return @(value) ;
+    }
+    if (strcmp(ret, @encode(BOOL)) == 0) {
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
+        [invocation setArgument:&param atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:sel];
+        [invocation invoke];
+        
+        BOOL value = 0 ;
+        [invocation getReturnValue:&value];
+        return @(value) ;
+    }
+    if (strcmp(ret, @encode(CGFloat)) == 0) {
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
+        [invocation setArgument:&param atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:sel];
+        [invocation invoke];
+        
+        CGFloat value = 0 ;
+        [invocation getReturnValue:&value];
+        return @(value) ;
+    }
+    if (strcmp(ret, @encode(NSUInteger)) == 0) {
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
+        [invocation setArgument:&param atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:sel];
+        [invocation invoke];
+        
+        NSUInteger value = 0 ;
+        [invocation getReturnValue:&value];
+        return @(value) ;
+    }
+    //对象
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    return [target performSelector:sel withObject:param];
+#pragma clang diagnostic pop
+    
 }
 
 @end

@@ -15,12 +15,12 @@
 
 @implementation BaseViewController
 
-- (instancetype)initWithViewModel:(id)viewModel{
-    if(self = [super init]){
-        _viewModel = viewModel ;
-    }
-    return self ;
-}
+//- (instancetype)initWithViewModel:(id)viewModel{
+//    if(self = [super init]){
+//        _viewModel = viewModel ;
+//    }
+//    return self ;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

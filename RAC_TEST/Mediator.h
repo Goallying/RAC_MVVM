@@ -11,7 +11,6 @@
 @interface Mediator : NSObject
 
 + (instancetype)shared;
-+ (void)goToDetail:(NSString *)ID ;
-
+- (id)performTarget:(NSString *)target selector:(NSString *)sel parma:(NSDictionary *)param ;
 
 @end

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Mediator.h"
 @interface BaseViewController : UIViewController
 
 
 
-- (instancetype)initWithViewModel:(id)viewModel ;
-@property (nonatomic ,strong,readonly)id viewModel;
+//- (instancetype)initWithViewModel:(id)viewModel ;
+//@property (nonatomic ,strong,readonly)id viewModel;
 
 @end

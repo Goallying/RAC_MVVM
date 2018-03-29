@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "LiveItemCell.h"
 #import "ViewModel.h"
-#import "PlayViewController.h"
-#import "PlayViewModel.h"
 
 @interface ViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic ,strong)UICollectionView * collectionView ;
@@ -21,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -60,10 +60,9 @@
     
     NSString * url = [self.mainViewModel didSelectAtIndexPath:indexPath];
     
-    PlayViewModel * playViewModel = [PlayViewModel new];
-    playViewModel.urlString = url ;
-    PlayViewController * playVC = [[PlayViewController alloc]initWithViewModel:playViewModel];
-    [self.navigationController pushViewController:playVC animated:YES];
+    UIViewController * vc = [[Mediator shared] performTarget:@"ViewControllerTarget" selector:@"initializePlayVC" parma:@{@"URL":url}];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

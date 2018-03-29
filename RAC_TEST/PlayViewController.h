@@ -10,4 +10,5 @@
 
 @interface PlayViewController : BaseViewController
 
+@property (nonatomic ,copy)NSString * url ;
 @end

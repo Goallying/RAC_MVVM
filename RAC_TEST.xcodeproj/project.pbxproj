@@ -100,6 +100,7 @@
 		5568465620610CD20069C1FC /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568465520610CD20069C1FC /* PlayViewController.m */; };
 		5568465A20610D910069C1FC /* BaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568465920610D910069C1FC /* BaseViewModel.m */; };
 		5568465D20610DFD0069C1FC /* PlayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568465C20610DFD0069C1FC /* PlayViewModel.m */; };
+		55D1A81B206C86BF0014C20A /* ViewControllerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1A81A206C86BF0014C20A /* ViewControllerTarget.m */; };
 		6849E6E3ACFEC0F7D3042972 /* Pods_RACDisposable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B19D1FB312D0CD27F615D7 /* Pods_RACDisposable.framework */; };
 		7DC7563370E53697CFFC1EE8 /* Pods_RACMulticastConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BCF65BED8BB3EEF1EC1561 /* Pods_RACMulticastConnection.framework */; };
 		88AAA49BC993E02A93A9CD58 /* Pods_RACBind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518E6ACFEA0B5C0017679AD8 /* Pods_RACBind.framework */; };
@@ -290,6 +291,8 @@
 		5568465920610D910069C1FC /* BaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewModel.m; sourceTree = "<group>"; };
 		5568465B20610DFD0069C1FC /* PlayViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayViewModel.h; sourceTree = "<group>"; };
 		5568465C20610DFD0069C1FC /* PlayViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayViewModel.m; sourceTree = "<group>"; };
+		55D1A819206C86BF0014C20A /* ViewControllerTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerTarget.h; sourceTree = "<group>"; };
+		55D1A81A206C86BF0014C20A /* ViewControllerTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTarget.m; sourceTree = "<group>"; };
 		5BF2A039ED64B5EADAFCAC09 /* Pods-RACFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACFilter.release.xcconfig"; path = "Pods/Target Support Files/Pods-RACFilter/Pods-RACFilter.release.xcconfig"; sourceTree = "<group>"; };
 		6BA854176F3BD544E8ECE2D2 /* Pods_RAC_TEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RAC_TEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		703F1E4F6E0AC83618C7F763 /* Pods-RACSinal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACSinal.release.xcconfig"; path = "Pods/Target Support Files/Pods-RACSinal/Pods-RACSinal.release.xcconfig"; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 				556844A8205F7E4B0069C1FC /* ViewController.m */,
 				5568465420610CD20069C1FC /* PlayViewController.h */,
 				5568465520610CD20069C1FC /* PlayViewController.m */,
+				55D1A819206C86BF0014C20A /* ViewControllerTarget.h */,
+				55D1A81A206C86BF0014C20A /* ViewControllerTarget.m */,
 				556844AA205F7E4B0069C1FC /* Main.storyboard */,
 				556844AD205F7E4B0069C1FC /* Assets.xcassets */,
 				556844AF205F7E4B0069C1FC /* LaunchScreen.storyboard */,
@@ -2046,6 +2051,7 @@
 				5568463C2060BBC10069C1FC /* View.m in Sources */,
 				556844A9205F7E4B0069C1FC /* ViewController.m in Sources */,
 				556846422060D8D20069C1FC /* RequestManager.m in Sources */,
+				55D1A81B206C86BF0014C20A /* ViewControllerTarget.m in Sources */,
 				556844B4205F7E4B0069C1FC /* main.m in Sources */,
 				556844A6205F7E4B0069C1FC /* AppDelegate.m in Sources */,
 				5568465620610CD20069C1FC /* PlayViewController.m in Sources */,
