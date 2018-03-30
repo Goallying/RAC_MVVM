@@ -11,6 +11,11 @@
 @interface Mediator : NSObject
 
 + (instancetype)shared;
-- (id)performTarget:(NSString *)target selector:(NSString *)sel parma:(NSDictionary *)param ;
+
+//回调参数名一定要是completion.
+- (id)performTarget:(NSString *)target
+           selector:(NSString *)sel
+              parma:(NSDictionary *)param
+         completion:(void(^)(id))completion;
 
 @end

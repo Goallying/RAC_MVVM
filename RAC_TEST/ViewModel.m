@@ -49,7 +49,7 @@
             [subscriber sendNext:model.creator.nick];
             [subscriber sendCompleted];
             return [RACDisposable disposableWithBlock:^{
-                NSLog(@"disposable");
+//                NSLog(@"disposable");
             }] ;
         }];
     }];

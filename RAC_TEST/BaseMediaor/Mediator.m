@@ -28,14 +28,24 @@ typedef void (^componentBlock) (id param);
 + (instancetype)allocWithZone:(struct _NSZone *)zone{
     return [self shared];
 }
-- (id)performTarget:(NSString *)target selector:(NSString *)sel parma:(NSDictionary *)param {
+- (id)performTarget:(NSString *)target selector:(NSString *)sel parma:(NSDictionary *)param completion:(void(^)(id))completion{
     
     Class targetCls = NSClassFromString(target);
-    SEL action ;
+    SEL action = NULL ;
     if (param) {
-       action =  NSSelectorFromString([NSString stringWithFormat:@"%@:",sel]);
+    ////回调参数名一定要是completion.
+        if (completion) {
+            action =  NSSelectorFromString([NSString stringWithFormat:@"%@:completion:",sel]);
+
+        }else{
+            action =  NSSelectorFromString([NSString stringWithFormat:@"%@:",sel]);
+        }
     }else{
-        action = NSSelectorFromString(sel);
+        if (completion) {
+            action =  NSSelectorFromString([NSString stringWithFormat:@"%@:",sel]);
+        }else{
+            action = NSSelectorFromString(sel);
+        }
     }
     
     if (!targetCls) {
@@ -44,13 +54,13 @@ typedef void (^componentBlock) (id param);
     }
     NSObject * targetObj = [[targetCls alloc] init];
     if ([targetObj respondsToSelector:action]) {
-        return [self _performTarget:targetObj selector:action parma:param];
+        return [self _performTarget:targetObj selector:action parma:param completion:completion];
     }else{
         @throw [NSException exceptionWithName:@"Selector Implement Not Found" reason:@"找不到方法实现" userInfo:nil];
     }
 }
 
-- (id)_performTarget:(NSObject *)target selector:(SEL)sel parma:(NSDictionary *)param{
+- (id)_performTarget:(NSObject *)target selector:(SEL)sel parma:(NSDictionary *)param completion:(void(^)(id))completion{
     
     NSMethodSignature * sign = [target methodSignatureForSelector:sel];
     if (!sign) {
@@ -60,7 +70,12 @@ typedef void (^componentBlock) (id param);
     const char * ret = [sign methodReturnType];
     if (strcmp(ret, @encode(void)) == 0) {
         NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
-        [invocation setArgument:&param atIndex:2];
+        if (!param && completion) {
+            [invocation setArgument:&completion atIndex:2];
+        }else{
+            [invocation setArgument:&param atIndex:2];
+            [invocation setArgument:&completion atIndex:3];
+        }
         [invocation setTarget:target];
         [invocation setSelector:sel];
         [invocation invoke];
@@ -68,7 +83,13 @@ typedef void (^componentBlock) (id param);
     }
     if (strcmp(ret, @encode(NSInteger)) == 0) {
         NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
-        [invocation setArgument:&param atIndex:2];
+        if (!param && completion) {
+            [invocation setArgument:&completion atIndex:2];
+        }else{
+            [invocation setArgument:&param atIndex:2];
+            [invocation setArgument:&completion atIndex:3];
+        }
+
         [invocation setTarget:target];
         [invocation setSelector:sel];
         [invocation invoke];
@@ -79,7 +100,13 @@ typedef void (^componentBlock) (id param);
     }
     if (strcmp(ret, @encode(BOOL)) == 0) {
         NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
-        [invocation setArgument:&param atIndex:2];
+        if (!param && completion) {
+            [invocation setArgument:&completion atIndex:2];
+        }else{
+            [invocation setArgument:&param atIndex:2];
+            [invocation setArgument:&completion atIndex:3];
+        }
+
         [invocation setTarget:target];
         [invocation setSelector:sel];
         [invocation invoke];
@@ -90,7 +117,13 @@ typedef void (^componentBlock) (id param);
     }
     if (strcmp(ret, @encode(CGFloat)) == 0) {
         NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
-        [invocation setArgument:&param atIndex:2];
+        if (!param && completion) {
+            [invocation setArgument:&completion atIndex:2];
+        }else{
+            [invocation setArgument:&param atIndex:2];
+            [invocation setArgument:&completion atIndex:3];
+        }
+
         [invocation setTarget:target];
         [invocation setSelector:sel];
         [invocation invoke];
@@ -101,7 +134,13 @@ typedef void (^componentBlock) (id param);
     }
     if (strcmp(ret, @encode(NSUInteger)) == 0) {
         NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:sign];
-        [invocation setArgument:&param atIndex:2];
+        if (!param && completion) {
+            [invocation setArgument:&completion atIndex:2];
+        }else{
+            [invocation setArgument:&param atIndex:2];
+            [invocation setArgument:&completion atIndex:3];
+        }
+
         [invocation setTarget:target];
         [invocation setSelector:sel];
         [invocation invoke];
@@ -113,7 +152,11 @@ typedef void (^componentBlock) (id param);
     //对象
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    return [target performSelector:sel withObject:param];
+    if (!param && completion) {
+        return [target performSelector:sel withObject:completion];
+    }else{
+       return [target performSelector:sel withObject:param withObject:completion];
+    }
 #pragma clang diagnostic pop
     
 }

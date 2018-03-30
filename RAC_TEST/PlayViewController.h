@@ -7,8 +7,12 @@
 //
 
 #import "BaseViewController.h"
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 @interface PlayViewController : BaseViewController
 
 @property (nonatomic ,copy)NSString * url ;
+@property (nonatomic ,copy)void (^callBack)(NSString * aString) ;
+
+@property (nonatomic ,strong)RACSubject * urlSignal ;
+
 @end

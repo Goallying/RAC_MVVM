@@ -12,4 +12,10 @@
 
 - (UIViewController *)initializePlayVC:(NSDictionary *)param ;
 
+//回调参数名一定要是completion.
+- (UIViewController *)initializePlayVC:(NSDictionary *)param completion:(void(^)(NSString * aString))string ;
+
+- (UIViewController *)initializePlayVC ;
+- (UIViewController *)initializePlayVCAndCompletion:(void(^)(NSString * aString))string;
+
 @end

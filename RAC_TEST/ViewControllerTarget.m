@@ -17,7 +17,31 @@
     PlayViewController * playVC = [PlayViewController new];
     playVC.url = param[@"URL"];
     return playVC ;
-    
 }
 
+- (UIViewController *)initializePlayVC:(NSDictionary *)param completion:(void (^)(NSString *))string{
+    
+    PlayViewController * playVC = [PlayViewController new];
+    playVC.url = param[@"URL"];
+    [playVC setCallBack:^(NSString *aString) {
+        if (string) {
+            string(aString);
+        }
+    }];
+    return playVC ;
+}
+- (UIViewController *)initializePlayVC {
+    PlayViewController * playVC = [PlayViewController new];
+    return playVC ;
+}
+- (UIViewController *)initializePlayVCAndCompletion:(void(^)(NSString * aString))string{
+    
+    PlayViewController * playVC = [PlayViewController new];
+    [playVC setCallBack:^(NSString *aString) {
+        if (string) {
+            string(aString);
+        }
+    }];
+    return playVC ;
+}
 @end

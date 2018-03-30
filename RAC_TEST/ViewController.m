@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "LiveItemCell.h"
 #import "ViewModel.h"
+#import "Mediator+ViewController.h"
 
+#import "PlayViewController.h"
 @interface ViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic ,strong)UICollectionView * collectionView ;
 @property (nonatomic ,strong)ViewModel * mainViewModel ;
@@ -19,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -37,7 +38,6 @@
 //            BOOL hidden = x.count == 0;
         [self.collectionView reloadData];
         } error:^(NSError *error) {
-            NSLog(@"==== %@",error);
         }];
 }
 
@@ -60,9 +60,27 @@
     
     NSString * url = [self.mainViewModel didSelectAtIndexPath:indexPath];
     
-    UIViewController * vc = [[Mediator shared] performTarget:@"ViewControllerTarget" selector:@"initializePlayVC" parma:@{@"URL":url}];
-    [self.navigationController pushViewController:vc animated:YES];
+//    UIViewController * vc = [[Mediator shared] performTarget:@"ViewControllerTarget" selector:@"initializePlayVC" parma:@{@"URL":url} completion:^(id obj) {
+//        NSLog(@"+++++ %@",obj);
+//    }];
     
+//    UIViewController * vc = [[Mediator shared] performTarget:@"ViewControllerTarget" selector:@"initializePlayVC" parma:nil completion:nil];
+    
+//    UIViewController * vc = [[Mediator shared]performTarget:@"ViewControllerTarget" selector:@"initializePlayVCAndCompletion" parma:nil completion:^(id obj) {
+//        NSLog(@"+++++ %@",obj);
+//    }];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+//    [[Mediator shared]pushToPlayVC:@{@"URL":url} completion:^(id aObj) {
+//         NSLog(@"+++++ %@",aObj);
+//    }];
+    
+    //RAC
+    PlayViewController * vc = [PlayViewController new];
+    [vc.urlSignal subscribeNext:^(id x) {
+        NSLog(@"RAC RECEIVE == %@",x);
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
